@@ -3,6 +3,7 @@ package SuperVend.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -25,13 +26,17 @@ public class LoginController implements Initializable {
     private TextField userTF;
     @FXML
     private PasswordField pwdTF;
+    @FXML
+    private Label errorMsgLabel;
 
     private Security auth;
     private final Path rootFP = Path.of(System.getProperty("user.dir"));
 
     @FXML
     public void loginAction(ActionEvent e) {
-
+        String username = userTF.getText();
+        String password = pwdTF.getText();
+        Security.authenticate(username, password);
     }
 
     @Override
@@ -46,7 +51,9 @@ public class LoginController implements Initializable {
             }
         } else {
             try {
+                Files.createDirectories(imgPath.getParent());
                 Files.copy(getClass().getResourceAsStream("/imgs/logo.png"), imgPath);
+                logoImg.setImage(new Image(new FileInputStream(img)));
             } catch (IOException e) {
                 e.printStackTrace();
             }

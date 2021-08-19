@@ -3,19 +3,24 @@ package SuperVend.model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Security {
     private static String userID;
-    private static TreeMap<String, String> userdata;
-    private static String loginFilePath = System.getProperty("user.dir") + "/Login.csv";
+    private static final TreeMap<String, String> userdata;
+    private static final Path rootFP = Path.of(System.getProperty("user.dir"));
 
     static {
-        File loginFile = new File(loginFilePath);
+        userdata = new TreeMap<>();
+        Path loginFilePath = rootFP.resolve(Path.of("csv/Login.csv"));
+        File loginFile = new File(String.valueOf(loginFilePath));
         if (!loginFile.exists()) {
             try {
-                loginFile.createNewFile();
+                Files.createDirectories(loginFilePath.getParent());
+                Files.copy(Security.class.getResourceAsStream("/csv/Login.csv"), loginFilePath);
             } catch (IOException e) {
                 e.printStackTrace();
             }

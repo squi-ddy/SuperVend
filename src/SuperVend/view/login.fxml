@@ -29,7 +29,7 @@
       </StackPane>
    </top>
    <center>
-      <GridPane maxHeight="-Infinity" prefHeight="90.0" BorderPane.alignment="CENTER">
+      <GridPane maxHeight="-Infinity" prefHeight="130.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="115.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="285.0" />
@@ -38,6 +38,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
             <TextField fx:id="userTF" maxWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1">
@@ -61,6 +62,7 @@
                </GridPane.margin>
             </Label>
             <Button mnemonicParsing="false" onAction="#loginAction" text="Submit" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="errorMsgLabel" text="invis" textFill="RED" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </center>
