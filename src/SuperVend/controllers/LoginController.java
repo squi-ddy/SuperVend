@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -36,7 +37,12 @@ public class LoginController implements Initializable {
     public void loginAction(ActionEvent e) {
         String username = userTF.getText();
         String password = pwdTF.getText();
-        Security.authenticate(username, password);
+        errorMsgLabel.setVisible(false);
+        boolean result = Security.authenticate(username, password);
+        if (!result) {
+            errorMsgLabel.setVisible(true);
+            errorMsgLabel.setText("Invalid username or password!");
+        }
     }
 
     @Override
@@ -52,7 +58,7 @@ public class LoginController implements Initializable {
         } else {
             try {
                 Files.createDirectories(imgPath.getParent());
-                Files.copy(getClass().getResourceAsStream("/imgs/logo.png"), imgPath);
+                Files.copy(Objects.requireNonNull(getClass().getResourceAsStream("/imgs/logo.png")), imgPath);
                 logoImg.setImage(new Image(new FileInputStream(img)));
             } catch (IOException e) {
                 e.printStackTrace();

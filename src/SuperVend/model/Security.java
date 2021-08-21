@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -20,7 +21,7 @@ public class Security {
         if (!loginFile.exists()) {
             try {
                 Files.createDirectories(loginFilePath.getParent());
-                Files.copy(Security.class.getResourceAsStream("/csv/Login.csv"), loginFilePath);
+                Files.copy(Objects.requireNonNull(Security.class.getResourceAsStream("/csv/Login.csv")), loginFilePath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
