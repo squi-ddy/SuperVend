@@ -138,4 +138,13 @@ public class Product {
         if (size == MEDIUM) return 2;
         return 4;
     }
+
+    public static short sizeFromString(String size) {
+        return switch (size) {
+            case "S" -> SMALL;
+            case "M" -> MEDIUM;
+            case "L" -> LARGE;
+            default -> throw new IllegalArgumentException();
+        };
+    }
 }

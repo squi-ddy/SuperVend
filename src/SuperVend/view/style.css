@@ -1,0 +1,26 @@
+.titled-pane > .title {
+    -fx-background-color: none;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: black;
+}
+
+.titled-pane:focused > .title > .arrow-button > .arrow {
+    -fx-background-color: black;
+    -fx-border-width: 0;
+    -fx-effect: null;
+    -fx-background-insets: 0;
+}
+
+.titled-pane > .title > .arrow-button > .arrow {
+    -fx-background-color: black;
+}
+
+.productLabels {
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 5 5 5 10;
+}
+
+.productLabels:hover {
+    -fx-background-color: derive(powderblue, -10%);
+}
