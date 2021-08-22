@@ -7,6 +7,7 @@ import java.util.*;
 public class ProductManager {
     private static final TreeMap<String, Product> productsByID;
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    private static final SimpleDateFormat tFormatter = new SimpleDateFormat("HH:mm:ss");
 
     static {
         productsByID = new TreeMap<>();
@@ -58,4 +59,6 @@ public class ProductManager {
     public static String formatDate(Date date) {
         return formatter.format(date);
     }
+
+    public static String formatTime(Date date) { return tFormatter.format(date);}
 }

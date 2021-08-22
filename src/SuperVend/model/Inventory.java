@@ -48,7 +48,7 @@ public class Inventory {
     public static void writeData() {
         PrintWriter out = new PrintWriter(ResourceManager.writeFile("csv/Inventory.csv"));
         for (String keys : inventory.keySet()) {
-            out.write(keys.substring(0, 2) + ',' + keys + ',' + inventory.get(keys));
+            out.println(keys.substring(0, 2) + ',' + keys + ',' + inventory.get(keys));
         }
         out.close();
     }

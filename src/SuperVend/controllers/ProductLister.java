@@ -9,6 +9,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeMap;
 
 public class ProductLister {
@@ -35,6 +36,7 @@ public class ProductLister {
     }
 
     private VBox createProducts(ArrayList<Product> products) {
+        Collections.sort(products);
         VBox res = new VBox();
         for (Product product : products) {
             AnchorPane prod = new AnchorPane();

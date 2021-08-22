@@ -3,7 +3,7 @@ package SuperVend.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Product {
+public class Product implements Comparable<Product> {
     public static final short SMALL = 0;
     public static final short MEDIUM = 1;
     public static final short LARGE = 2;
@@ -164,5 +164,16 @@ public class Product {
             case LARGE -> "Large (L)";
             default -> throw new IllegalArgumentException();
         };
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        if (ProductCategories.getFullName(this.getProductID().substring(0, 2)).compareTo(ProductCategories.getFullName(o.getProductID().substring(0, 2))) != 0) {
+            return ProductCategories.getFullName(this.getProductID().substring(0, 2)).compareTo(ProductCategories.getFullName(o.getProductID().substring(0, 2)));
+        }
+        if (this.getSize() != o.getSize()) {
+            return this.getSize() - o.getSize();
+        }
+        return this.getName().compareTo(o.getName());
     }
 }
