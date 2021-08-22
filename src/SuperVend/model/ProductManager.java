@@ -1,42 +1,22 @@
 package SuperVend.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ProductManager {
-    //private static productTree;
     private static final TreeMap<String, Product> productsByID;
-    private static final Path rootFP = Path.of(System.getProperty("user.dir"));
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
     static {
         productsByID = new TreeMap<>();
-        Path prodFilePath = rootFP.resolve(Path.of("csv/Product.csv"));
-        File prodFile = new File(String.valueOf(prodFilePath));
-        if (!prodFile.exists()) {
-            try {
-                Files.createDirectories(prodFilePath.getParent());
-                Files.copy(Objects.requireNonNull(ProductManager.class.getResourceAsStream("/csv/Product.csv")), prodFilePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Scanner in = new Scanner(ResourceManager.readFile("csv/Product.csv"));
+        while (in.hasNext()) {
+            String[] line = in.nextLine().split(",");
+            Product result = genProduct(line);
+            productsByID.put(line[0], result);
         }
-        try {
-            Scanner in = new Scanner(prodFile);
-            while (in.hasNext()) {
-                String[] line = in.nextLine().split(",");
-                Product result = genProduct(line);
-                productsByID.put(line[0], result);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        in.close();
     }
 
     private static Product genProduct(String[] line) {
@@ -56,12 +36,12 @@ public class ProductManager {
             return null;
         }
         double weight = Double.parseDouble(line[9]);
-        ArrayList<String> images = new ArrayList<>(Arrays.asList(Arrays.copyOfRange(line, 10, line.length - 1)));
+        ArrayList<String> images = new ArrayList<>(Arrays.asList(Arrays.copyOfRange(line, 10, line.length)));
         return new Product(productID, name, desc, brand, price, temp, size, country, expiry, weight, images);
     }
 
-    public static TreeMap<String, Product> getProductsByID() {
-        return productsByID;
+    public static Product getProductsByID(String productID) {
+        return productsByID.get(productID);
     }
 
     public static TreeMap<String, ArrayList<Product>> getProductsByCategory() {
@@ -73,5 +53,9 @@ public class ProductManager {
             productTree.get(prodID.substring(0, 2)).add(productsByID.get(prodID));
         }
         return productTree;
+    }
+
+    public static String formatDate(Date date) {
+        return formatter.format(date);
     }
 }

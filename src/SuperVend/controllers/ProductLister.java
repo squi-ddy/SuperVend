@@ -1,10 +1,8 @@
-package SuperVend.view;
+package SuperVend.controllers;
 
 import SuperVend.model.Product;
 import SuperVend.model.ProductCategories;
-import javafx.geometry.Insets;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
@@ -17,11 +15,13 @@ public class ProductLister {
     private final Accordion rootNode;
     private final TreeMap<String, ArrayList<Product>> products;
     private final SelectionHandler selectionHandler;
+    private final Pane contentPane;
 
-    public ProductLister(Accordion root, TreeMap<String, ArrayList<Product>> products, SelectionHandler selectionHandler) {
+    public ProductLister(Accordion root, TreeMap<String, ArrayList<Product>> products, SelectionHandler selectionHandler, Pane contentPane) {
         this.rootNode = root;
         this.products = products;
         this.selectionHandler = selectionHandler;
+        this.contentPane = contentPane;
         createTree(products);
     }
 
@@ -40,6 +40,7 @@ public class ProductLister {
             AnchorPane prod = new AnchorPane();
             Label prodLabel = new Label(product.getName());
             prodLabel.getStyleClass().add("productLabels");
+            prod.setStyle("-fx-background-color: powderblue");
             AnchorPane.setBottomAnchor(prodLabel, 0.);
             AnchorPane.setTopAnchor(prodLabel, 0.);
             AnchorPane.setLeftAnchor(prodLabel, 0.);
@@ -47,7 +48,8 @@ public class ProductLister {
             prod.getChildren().add(prodLabel);
             prod.setCursor(Cursor.HAND);
             prod.setOnMouseClicked(e -> selectionHandler.handlePress(prod, e, () -> {
-                // todo: change main screen
+                contentPane.getChildren().clear();
+                contentPane.getChildren().add(ProductLoader.getRoot(product));
             }));
             res.getChildren().add(prod);
         }

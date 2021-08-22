@@ -10,29 +10,15 @@ import java.util.TreeMap;
 
 public class ProductCategories {
     private static final TreeMap<String, String> categories;
-    private static final Path rootFP = Path.of(System.getProperty("user.dir"));
 
     static {
         categories = new TreeMap<>();
-        Path catFilePath = rootFP.resolve(Path.of("csv/ProductCode.csv"));
-        File catFile = new File(String.valueOf(catFilePath));
-        if (!catFile.exists()) {
-            try {
-                Files.createDirectories(catFilePath.getParent());
-                Files.copy(Objects.requireNonNull(ProductCategories.class.getResourceAsStream("/csv/ProductCode.csv")), catFilePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Scanner in = new Scanner(ResourceManager.readFile("csv/ProductCode.csv"));
+        while (in.hasNext()) {
+            String[] line = in.nextLine().split(",");
+            categories.put(line[0], line[1]);
         }
-        try {
-            Scanner in = new Scanner(catFile);
-            while (in.hasNext()) {
-                String[] line = in.nextLine().split(",");
-                categories.put(line[0], line[1]);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        in.close();
     }
 
     public static ArrayList<String> getCategories() {
@@ -45,19 +31,19 @@ public class ProductCategories {
 
     public static void addCategory(String shortName, String fullName) {
         categories.put(shortName, fullName);
+        writeData();
+    }
+
+    public static void deleteCategory(String name) {
+        categories.remove(name);
+        writeData();
     }
 
     public static void writeData() {
-        Path catFilePath = rootFP.resolve(Path.of("csv/ProductCode.csv"));
-        File catFile = new File(String.valueOf(catFilePath));
-        try {
-            PrintWriter out = new PrintWriter(new FileOutputStream(catFile));
-            for (String keys : categories.keySet()) {
-                out.write(keys + ',' + categories.get(keys));
-            }
-            out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        PrintWriter out = new PrintWriter(ResourceManager.writeFile("csv/ProductCode.csv"));
+        for (String keys : categories.keySet()) {
+            out.write(keys + ',' + categories.get(keys));
         }
+        out.close();
     }
 }

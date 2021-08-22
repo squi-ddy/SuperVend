@@ -147,4 +147,22 @@ public class Product {
             default -> throw new IllegalArgumentException();
         };
     }
+
+    public static String sizeToShortString(short size) {
+        return switch (size) {
+            case SMALL -> "S";
+            case MEDIUM -> "M";
+            case LARGE -> "L";
+            default -> throw new IllegalArgumentException();
+        };
+    }
+
+    public static String sizeToLongString(short size) {
+        return switch (size) {
+            case SMALL -> "Small (S)";
+            case MEDIUM -> "Medium (M)";
+            case LARGE -> "Large (L)";
+            default -> throw new IllegalArgumentException();
+        };
+    }
 }
