@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,57 +12,53 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane stylesheets="@style.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: lightblue;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.LoginController">
    <top>
-      <StackPane BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="logoImg" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../resources/imgs/logo.png" />
-               </image>
-               <StackPane.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </StackPane.margin>
-            </ImageView>
-         </children>
-      </StackPane>
+       <StackPane BorderPane.alignment="CENTER">
+           <ImageView fx:id="logoImg" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+              <StackPane.margin>
+                  <Insets bottom="10.0" top="10.0"/>
+              </StackPane.margin>
+           </ImageView>
+       </StackPane>
    </top>
    <center>
-      <GridPane maxHeight="-Infinity" prefHeight="130.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="115.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="285.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-        </rowConstraints>
-         <children>
-            <TextField fx:id="userTF" maxWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets left="2.0" />
-               </GridPane.margin>
-            </TextField>
-            <PasswordField fx:id="pwdTF" maxWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="2.0" />
-               </GridPane.margin>
-            </PasswordField>
-            <Label alignment="CENTER_RIGHT" text="UserID" GridPane.halignment="RIGHT">
-               <GridPane.margin>
-                  <Insets right="2.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="2.0" />
-               </GridPane.margin>
-            </Label>
-            <Button mnemonicParsing="false" onAction="#loginAction" text="Submit" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Label fx:id="errorMsgLabel" text="invis" textFill="RED" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-         </children>
-      </GridPane>
+       <GridPane maxHeight="-Infinity" prefHeight="130.0" BorderPane.alignment="CENTER">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="115.0"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="285.0"/>
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
+           </rowConstraints>
+           <TextField fx:id="userTF" maxWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1">
+              <GridPane.margin>
+                  <Insets left="2.0"/>
+              </GridPane.margin>
+           </TextField>
+           <PasswordField fx:id="pwdTF" maxWidth="-Infinity" prefWidth="200.0" GridPane.columnIndex="1"
+                          GridPane.rowIndex="1">
+              <GridPane.margin>
+                  <Insets left="2.0"/>
+              </GridPane.margin>
+           </PasswordField>
+           <Label alignment="CENTER_RIGHT" text="UserID" GridPane.halignment="RIGHT">
+              <GridPane.margin>
+                  <Insets right="2.0"/>
+              </GridPane.margin>
+           </Label>
+           <Label text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+              <GridPane.margin>
+                  <Insets right="2.0"/>
+              </GridPane.margin>
+           </Label>
+           <Button mnemonicParsing="false" onAction="#loginAction" text="Submit" GridPane.columnSpan="2"
+                   GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+           <Label fx:id="errorMsgLabel" text="invis" textFill="RED" visible="false" GridPane.columnSpan="2"
+                  GridPane.halignment="CENTER" GridPane.rowIndex="3"/>
+       </GridPane>
    </center>
 </BorderPane>

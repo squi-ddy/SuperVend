@@ -52,20 +52,16 @@ public class LoginController implements Initializable {
             return;
         }
         window.hide();
-        if (Security.isAdmin()) {
-            //todo: admin screen
-        } else {
-            try {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("view/customer.fxml")));
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("SuperVend");
-                stage.showAndWait();
-                window.show();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("view/main.fxml")));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("SuperVend" + (Security.isAdmin() ? " (Admin)" : ""));
+            stage.showAndWait();
+            window.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 

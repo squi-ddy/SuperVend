@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+
+<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: powderblue;"
+      xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.AboutController">
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+    </padding>
+    <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" fx:id="logoImg">
+        <VBox.margin>
+          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </VBox.margin>
+    </ImageView>
+    <TextFlow textAlignment="CENTER">
+        <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </VBox.margin>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SuperVend v">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text fx:id="verLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="1.0">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+    </TextFlow>
+    <TextFlow textAlignment="CENTER">
+        <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </VBox.margin>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="By Liu Wenkai, NUSH">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+    </TextFlow>
+    <VBox alignment="CENTER" style="-fx-border-color: black; -fx-background-color: papayawhip;">
+        <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </VBox.margin>
+        <Label text="Advertisement">
+            <VBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </VBox.margin>
+        </Label>
+        <MediaView fx:id="advBox" fitHeight="200.0" fitWidth="400.0">
+            <VBox.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </VBox.margin>
+        </MediaView>
+    </VBox>
+</VBox>

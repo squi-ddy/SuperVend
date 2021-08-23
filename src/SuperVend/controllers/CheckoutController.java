@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -38,9 +39,10 @@ public class CheckoutController {
             for (Product p : bag) {
                 TextFlow tf = new TextFlow();
                 Label prodTitle = new Label(p.getName());
+                tf.setPadding(new Insets(2));
                 tf.getChildren().add(prodTitle);
                 tf.setTextAlignment(TextAlignment.CENTER);
-                VBox.setMargin(tf, new Insets(5));
+                VBox.setMargin(tf, new Insets(1));
                 tf.setStyle("-fx-border-color: black;");
                 bagProducts.getChildren().add(tf);
             }

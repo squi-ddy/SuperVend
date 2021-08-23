@@ -2,6 +2,7 @@ package SuperVend.controllers;
 
 import SuperVend.model.Product;
 import SuperVend.model.ProductCategories;
+import SuperVend.model.Security;
 import javafx.scene.Cursor;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
@@ -50,7 +51,7 @@ public class ProductLister {
             prod.setCursor(Cursor.HAND);
             prod.setOnMouseClicked(e -> selectionHandler.handlePress(prodLabel, e, () -> {
                 contentPane.getChildren().clear();
-                contentPane.getChildren().add(ProductLoader.getRoot(product));
+                contentPane.getChildren().add(Security.isAdmin() ? AdminProductLoader.getRoot(product) : ProductLoader.getRoot(product));
             }));
             res.getChildren().add(prod);
         }

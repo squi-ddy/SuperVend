@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox alignment="TOP_CENTER" fillWidth="false" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.AdminProductController">
+   <TextField fx:id="nameTF" alignment="CENTER">
+      <font>
+         <Font size="24.0" />
+      </font>
+      <VBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </VBox.margin>
+   </TextField>
+   <HBox alignment="CENTER" style="-fx-border-color: black;">
+      <Button mnemonicParsing="false" onAction="#chooseImageAction" text="Choose Images...">
+         <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </HBox.margin>
+      </Button>
+   </HBox>
+   <HBox alignment="CENTER">
+      <VBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </VBox.margin>
+      <HBox alignment="CENTER" prefHeight="32.0" prefWidth="191.0" style="-fx-border-color: black;">
+         <GridPane alignment="CENTER" prefWidth="250.0">
+            <columnConstraints>
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <VBox alignment="CENTER" GridPane.columnIndex="1">
+               <TextFlow textAlignment="CENTER">
+                  <TextField fx:id="stockTF" prefHeight="26.0" prefWidth="32.0"/>
+                  <Label text=" in stock"/>
+               </TextFlow>
+            </VBox>
+            <VBox alignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </GridPane.margin>
+               <TextFlow textAlignment="CENTER">
+                  <Label text="\$"/>
+                  <TextField fx:id="priceTF" prefHeight="26.0" prefWidth="53.0"/>
+               </TextFlow>
+            </VBox>
+         </GridPane>
+      </HBox>
+   </HBox>
+   <VBox alignment="CENTER" prefWidth="700.0" style="-fx-border-color: black;">
+      <VBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </VBox.margin>
+      <TextArea fx:id="descTextArea" prefHeight="200.0" styleClass="centredTextArea" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </TextArea>
+      <VBox alignment="CENTER" fillWidth="false">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         </VBox.margin>
+         <HBox alignment="CENTER" style="-fx-border-color: black;">
+            <GridPane prefWidth="400.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               </rowConstraints>
+               <TextFlow prefWidth="100.0" textAlignment="CENTER">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Size: "/>
+                  <TextField fx:id="sizeTF" prefHeight="26.0" prefWidth="44.0"/>
+               </TextFlow>
+               <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Origin: "/>
+                  <TextField fx:id="originTF" prefHeight="26.0" prefWidth="149.0"/>
+               </TextFlow>
+               <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Weight: "/>
+                  <TextField fx:id="weightTF" prefHeight="26.0" prefWidth="57.0"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="g"/>
+               </TextFlow>
+               <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="3">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temperature: "/>
+                  <TextField fx:id="tempTF" prefHeight="26.0" prefWidth="33.0"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="°C"/>
+               </TextFlow>
+               <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="2">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expires: "/>
+                  <TextField fx:id="expiryTF" prefHeight="26.0" prefWidth="90.0"/>
+               </TextFlow>
+               <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Internal ID: "/>
+                  <Text fx:id="prodCatText" strokeType="OUTSIDE" strokeWidth="0.0" text="AB"/>
+                  <TextField fx:id="prodIDTF" prefHeight="26.0" prefWidth="60.0"/>
+               </TextFlow>
+               <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand: "/>
+                  <TextField fx:id="brandTF" prefHeight="26.0" prefWidth="150.0"/>
+               </TextFlow>
+            </GridPane>
+         </HBox>
+      </VBox>
+   </VBox>
+   <Button mnemonicParsing="false" onAction="#applyAction" text="Apply">
+      <VBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </VBox.margin>
+   </Button>
+   <Label fx:id="errLabel" text="Error" textFill="RED" />
+</VBox>

@@ -9,12 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class ProductController {
-    @FXML
-    private VBox sidebarVBox;
     @FXML
     private Label nameLabel;
     @FXML

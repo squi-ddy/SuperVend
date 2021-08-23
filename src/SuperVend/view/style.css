@@ -107,3 +107,7 @@
 .handlerSelected:hover {
     -fx-background-color: derive(lightgreen, -10%);;
 }
+
+.centredTextArea *.text {
+    -fx-text-alignment: center;
+}

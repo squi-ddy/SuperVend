@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.MainController">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0"
+            style="-fx-border-color: black; -fx-border-width: 0 1 0 0; -fx-background-color: powderblue;"
+            stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <AnchorPane style="-fx-border-width: 0 0 1 0; -fx-border-color: black; -fx-background-color: papayawhip;">
+            <ImageView fx:id="logoImg" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"
+                       AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                       AnchorPane.topAnchor="5.0"/>
+         </AnchorPane>
+         <ScrollPane hbarPolicy="NEVER" styleClass="edge-to-edge" stylesheets="@style.css" vbarPolicy="NEVER"
+                     VBox.vgrow="ALWAYS">
+            <Accordion fx:id="productList" prefWidth="210.0" style="-fx-box-border: transparent;"
+                       stylesheets="@style.css"/>
+         </ScrollPane>
+         <AnchorPane fx:id="cartPane">
+            <Label text="Cart" style="-fx-border-width: 1 0 0 0;"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0" fx:id="cartLabel">
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+               </padding>
+            </Label>
+         </AnchorPane>
+      </VBox>
+   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: palegreen;" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <bottom>
+            <HBox alignment="CENTER_RIGHT" style="-fx-border-color: black; -fx-border-width: 1 0 0 0;"
+                  stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <Button mnemonicParsing="false" onAction="#openAbout" stylesheets="@style.css" text="About...">
+                  <HBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                  </HBox.margin>
+               </Button>
+            </HBox>
+         </bottom>
+         <center>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="edge-to-edge" vbarPolicy="NEVER"
+                        BorderPane.alignment="CENTER">
+               <AnchorPane fx:id="contentPane"/>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
