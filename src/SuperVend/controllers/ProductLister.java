@@ -42,20 +42,19 @@ public class ProductLister {
             AnchorPane prod = new AnchorPane();
             Label prodLabel = new Label(product.getName());
             prodLabel.getStyleClass().add("productLabels");
-            prod.setStyle("-fx-background-color: powderblue");
             AnchorPane.setBottomAnchor(prodLabel, 0.);
             AnchorPane.setTopAnchor(prodLabel, 0.);
             AnchorPane.setLeftAnchor(prodLabel, 0.);
             AnchorPane.setRightAnchor(prodLabel, 0.);
             prod.getChildren().add(prodLabel);
             prod.setCursor(Cursor.HAND);
-            prod.setOnMouseClicked(e -> selectionHandler.handlePress(prod, e, () -> {
+            prod.setOnMouseClicked(e -> selectionHandler.handlePress(prodLabel, e, () -> {
                 contentPane.getChildren().clear();
                 contentPane.getChildren().add(ProductLoader.getRoot(product));
             }));
             res.getChildren().add(prod);
         }
-        res.setStyle("-fx-padding: -1;");
+        res.setStyle("-fx-padding: 0 -1 0 -1;");
         return res;
     }
 }

@@ -65,7 +65,7 @@ public class ProductController {
         if (ShoppingCart.getProductCount(product) + toBuy <= Inventory.getQuantity(product.getProductID())) {
             ShoppingCart.add(product, toBuy);
             errLabel.setText("Added " + toBuy + " " + product.getName() + " to the cart!");
-            errLabel.setStyle("-fx-text-fill: lightblue; ");
+            errLabel.setStyle("-fx-text-fill: royalblue; ");
         } else {
             errLabel.setText("Not enough in stock!");
             errLabel.setStyle("-fx-text-fill: red; ");
@@ -84,22 +84,27 @@ public class ProductController {
             return iv;
         });
         stockLabel.setText(Inventory.getQuantity(p.getProductID()) + " in stock");
+        infoLabel.setText("See More...");
         priceLabel.setText(String.format("$%.2f", p.getPrice()));
         descLabel.setText(p.getDescription());
-        sidebarVBox.getChildren().remove(moreInfoHBox);
         sizeText.setText(Product.sizeToLongString(p.getSize()));
         countryText.setText(p.getOrigin());
+        moreInfoHBox.setVisible(false);
+        moreInfoHBox.setManaged(false);
         weightText.setText(String.valueOf(p.getWeight()));
         tempText.setText(String.valueOf(p.getStorageTemp()));
         expiryText.setText(ProductManager.formatDate(p.getExpiry()));
         prodIDText.setText(p.getProductID());
+        quantityTF.clear();
         brandText.setText(p.getBrand());
         infoLabel.setOnMouseClicked(e -> {
             if (!showingMore) {
-                sidebarVBox.getChildren().add(4, moreInfoHBox);
+                moreInfoHBox.setManaged(true);
+                moreInfoHBox.setVisible(true);
                 infoLabel.setText("See Less...");
             } else {
-                sidebarVBox.getChildren().remove(moreInfoHBox);
+                moreInfoHBox.setManaged(false);
+                moreInfoHBox.setVisible(false);
                 infoLabel.setText("See More...");
             }
             showingMore = !showingMore;

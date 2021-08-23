@@ -7,8 +7,8 @@ public class SelectionHandler {
     private Node selected;
 
     public void handlePress(Node node, MouseEvent e, Runnable todo) {
-        if (selected != null) selected.setStyle("-fx-background-color: powderblue;");
-        node.setStyle("-fx-background-color: palegreen; ");
+        if (selected != null) selected.getStyleClass().remove("handlerSelected");
+        node.getStyleClass().add("handlerSelected");
         selected = node;
         todo.run();
     }
