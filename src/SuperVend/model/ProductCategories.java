@@ -3,10 +3,7 @@ package SuperVend.model;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ProductCategories {
     private static final TreeMap<String, String> categories;

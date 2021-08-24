@@ -2,8 +2,10 @@ package SuperVend.controllers;
 
 import SuperVend.model.Advertisement;
 import SuperVend.model.ResourceManager;
+import SuperVend.model.Security;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
@@ -19,19 +21,26 @@ public class AboutController implements Initializable {
     @FXML
     private MediaView advBox;
     @FXML
-    private Text verLabel;
-    @FXML
     private ImageView logoImg;
+    @FXML
+    private Label adminInfoLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Advertisement.reset();
-        advBox.setMediaPlayer(createPlayer());
+        if (!Security.isAdmin()) {
+            adminInfoLabel.setManaged(false);
+            Advertisement.reset();
+            advBox.setMediaPlayer(createPlayer());
+        } else {
+            adminInfoLabel.setVisible(true);
+            advBox.setVisible(false);
+            advBox.setManaged(false);
+        }
         logoImg.setImage(new Image(ResourceManager.readFile("imgs/logo.png")));
     }
 
     public void addListeners(Stage stage) {
-        stage.setOnCloseRequest(e -> advBox.getMediaPlayer().stop());
+        stage.setOnCloseRequest(e -> {if (advBox.getMediaPlayer() != null) advBox.getMediaPlayer().stop();});
     }
 
     private MediaPlayer createPlayer() {

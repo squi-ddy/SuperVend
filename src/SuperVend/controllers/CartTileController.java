@@ -15,12 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class CartTile {
+public class CartTileController {
     private final Product product;
     private final VBox parent;
     private final Runnable onDelete;
 
-    public CartTile(Product product, VBox parent, Runnable onDelete) {
+    public CartTileController(Product product, VBox parent, Runnable onDelete) {
         this.product = product;
         this.parent = parent;
         this.onDelete = onDelete;

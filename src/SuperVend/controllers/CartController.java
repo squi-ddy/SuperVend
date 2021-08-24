@@ -64,7 +64,7 @@ public class CartController implements Initializable {
         cartItemsVBox.getChildren().clear();
         payingTF.clear();
         for (Product p : ShoppingCart.getProducts()) {
-            CartTile ct = new CartTile(p, cartItemsVBox, () -> sumText.setText(String.format("%.2f", ShoppingCart.sum())));
+            CartTileController ct = new CartTileController(p, cartItemsVBox, () -> sumText.setText(String.format("%.2f", ShoppingCart.sum())));
             cartItemsVBox.getChildren().add(ct.constructTile());
         }
         if (cartItemsVBox.getChildren().size() == 0) {

@@ -1,7 +1,6 @@
 .button {
     -fx-background-color: #b2ffb2;
     -fx-border-color: black;
-    -fx-border-width: 1;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-effect: none;
@@ -110,4 +109,12 @@
 
 .centredTextArea *.text {
     -fx-text-alignment: center;
+}
+
+.productCategories {
+    -fx-border-color: black;
+    -fx-background-color: #b2ffb2;
+    -fx-font-size: 12;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
 }

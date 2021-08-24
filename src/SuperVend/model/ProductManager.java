@@ -49,6 +49,8 @@ public class ProductManager {
         return productsByID.get(productID);
     }
 
+    public static TreeSet<Product> getProducts() {return new TreeSet<>(productsByID.values());}
+
     public static TreeMap<String, ArrayList<Product>> getProductsByCategory() {
         TreeMap<String, ArrayList<Product>> productTree = new TreeMap<>();
         for (String key: ProductCategories.getCategories()) {

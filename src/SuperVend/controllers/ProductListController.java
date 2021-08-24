@@ -13,21 +13,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
 
-public class ProductLister {
-    private final Accordion rootNode;
-    private final TreeMap<String, ArrayList<Product>> products;
-    private final SelectionHandler selectionHandler;
-    private final Pane contentPane;
+public class ProductListController {
+    private static Accordion rootNode;
+    private static SelectionController selectionController;
+    private static Pane contentPane;
 
-    public ProductLister(Accordion root, TreeMap<String, ArrayList<Product>> products, SelectionHandler selectionHandler, Pane contentPane) {
-        this.rootNode = root;
-        this.products = products;
-        this.selectionHandler = selectionHandler;
-        this.contentPane = contentPane;
+    public static void init(Accordion rootNode, TreeMap<String, ArrayList<Product>> products, SelectionController selectionController, Pane contentPane) {
+        ProductListController.rootNode = rootNode;
+        ProductListController.selectionController = selectionController;
+        ProductListController.contentPane = contentPane;
         createTree(products);
     }
 
-    public void createTree(TreeMap<String, ArrayList<Product>> products) {
+    public static Accordion getRoot() {
+        return rootNode;
+    }
+
+    public static void updateProducts(TreeMap<String, ArrayList<Product>> products) {
+        createTree(products);
+    }
+
+    public static void createTree(TreeMap<String, ArrayList<Product>> products) {
+        rootNode.getPanes().clear();
         for (String category : products.keySet()) {
             TitledPane cat = new TitledPane();
             cat.setText(ProductCategories.getFullName(category));
@@ -36,7 +43,7 @@ public class ProductLister {
         }
     }
 
-    private VBox createProducts(ArrayList<Product> products) {
+    private static VBox createProducts(ArrayList<Product> products) {
         Collections.sort(products);
         VBox res = new VBox();
         for (Product product : products) {
@@ -49,9 +56,9 @@ public class ProductLister {
             AnchorPane.setRightAnchor(prodLabel, 0.);
             prod.getChildren().add(prodLabel);
             prod.setCursor(Cursor.HAND);
-            prod.setOnMouseClicked(e -> selectionHandler.handlePress(prodLabel, e, () -> {
+            prod.setOnMouseClicked(e -> selectionController.handlePress(prodLabel, e, () -> {
                 contentPane.getChildren().clear();
-                contentPane.getChildren().add(Security.isAdmin() ? AdminProductLoader.getRoot(product) : ProductLoader.getRoot(product));
+                contentPane.getChildren().add(Security.isAdmin() ? AdminProductLoadController.getRoot(product) : ProductLoadController.getRoot(product));
             }));
             res.getChildren().add(prod);
         }

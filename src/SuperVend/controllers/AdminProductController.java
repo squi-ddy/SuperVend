@@ -123,6 +123,9 @@ public class AdminProductController {
         ProductManager.changeID(product, productID);
         product.setBrand(brandTF.getText());
         ProductManager.writeData();
+        Inventory.writeData();
+        errLabel.setStyle("-fx-text-fill: royalblue;");
+        errLabel.setText("Update successful!");
     }
 
     @FXML

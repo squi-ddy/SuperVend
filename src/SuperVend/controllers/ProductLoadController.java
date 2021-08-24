@@ -9,13 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.util.Objects;
 
-public class AdminProductLoader {
+public class ProductLoadController {
     private static Parent root;
-    private static final AdminProductController controller;
+    private static final ProductController controller;
 
     // This class caches the product screen so slow fxml loading only occurs once
     static {
-        FXMLLoader fxml = new FXMLLoader(Objects.requireNonNull(Main.class.getResource("view/producteditable.fxml")));
+        FXMLLoader fxml = new FXMLLoader(Objects.requireNonNull(Main.class.getResource("view/product.fxml")));
         try {
             root = fxml.load();
         } catch (IOException e) {
