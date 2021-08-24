@@ -1,7 +1,7 @@
 package SuperVend.controllers;
 
+import SuperVend.model.Category;
 import SuperVend.model.Product;
-import SuperVend.model.ProductCategories;
 import SuperVend.model.Security;
 import javafx.scene.Cursor;
 import javafx.scene.control.Accordion;
@@ -9,16 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class ProductListController {
     private static Accordion rootNode;
     private static SelectionController selectionController;
     private static Pane contentPane;
 
-    public static void init(Accordion rootNode, TreeMap<String, ArrayList<Product>> products, SelectionController selectionController, Pane contentPane) {
+    public static void init(Accordion rootNode, TreeMap<Category, TreeSet<Product>> products, SelectionController selectionController, Pane contentPane) {
         ProductListController.rootNode = rootNode;
         ProductListController.selectionController = selectionController;
         ProductListController.contentPane = contentPane;
@@ -29,22 +28,21 @@ public class ProductListController {
         return rootNode;
     }
 
-    public static void updateProducts(TreeMap<String, ArrayList<Product>> products) {
+    public static void updateProducts(TreeMap<Category, TreeSet<Product>> products) {
         createTree(products);
     }
 
-    public static void createTree(TreeMap<String, ArrayList<Product>> products) {
+    public static void createTree(TreeMap<Category, TreeSet<Product>> products) {
         rootNode.getPanes().clear();
-        for (String category : products.keySet()) {
+        for (Category category : products.keySet()) {
             TitledPane cat = new TitledPane();
-            cat.setText(ProductCategories.getFullName(category));
+            cat.setText(category.getFullName());
             cat.setContent(createProducts(products.get(category)));
             rootNode.getPanes().add(cat);
         }
     }
 
-    private static VBox createProducts(ArrayList<Product> products) {
-        Collections.sort(products);
+    private static VBox createProducts(TreeSet<Product> products) {
         VBox res = new VBox();
         for (Product product : products) {
             AnchorPane prod = new AnchorPane();
@@ -56,7 +54,7 @@ public class ProductListController {
             AnchorPane.setRightAnchor(prodLabel, 0.);
             prod.getChildren().add(prodLabel);
             prod.setCursor(Cursor.HAND);
-            prod.setOnMouseClicked(e -> selectionController.handlePress(prodLabel, e, () -> {
+            prod.setOnMouseClicked(e -> selectionController.handlePress(prodLabel, () -> {
                 contentPane.getChildren().clear();
                 contentPane.getChildren().add(Security.isAdmin() ? AdminProductLoadController.getRoot(product) : ProductLoadController.getRoot(product));
             }));

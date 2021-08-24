@@ -37,16 +37,18 @@ public class Advertisement {
         return null;
     }
 
-    public static void delete(String fileName) {
-        advFileNames.remove(fileName);
-    }
-
-    public static void add(String fileName) {
-        advFileNames.add(fileName);
-    }
-
-    public static ArrayList<String> getAll() {
+    public static ArrayList<String> get() {
         return advFileNames;
+    }
+
+    public static void clear() {
+        advFileNames.clear();
+        writeData();
+    }
+
+    public static void add(String fName) {
+        advFileNames.add(fName);
+        writeData();
     }
 
     public static void writeData() {

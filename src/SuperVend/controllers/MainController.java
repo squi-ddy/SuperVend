@@ -62,7 +62,7 @@ public class MainController implements Initializable {
         if (Security.isAdmin()) {
             cartLabel.setText("More Actions...");
         }
-        cartPane.setOnMouseClicked(e -> selectionController.handlePress(cartLabel, e, () -> {
+        cartPane.setOnMouseClicked(e -> selectionController.handlePress(cartLabel, () -> {
             try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxmlName)));
                 AnchorPane.setBottomAnchor(root, 0.);
@@ -75,6 +75,6 @@ public class MainController implements Initializable {
                 ex.printStackTrace();
             }
         }));
-        ProductListController.init(productList, ProductManager.getProductsByCategory(), selectionController, contentPane);
+        ProductListController.init(productList, ProductManager.getAllProductsByCategory(), selectionController, contentPane);
     }
 }

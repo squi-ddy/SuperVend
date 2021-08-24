@@ -3,7 +3,6 @@ package SuperVend.controllers;
 import SuperVend.Main;
 import SuperVend.model.Product;
 import SuperVend.model.ShoppingCart;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,7 +31,7 @@ public class CartController implements Initializable {
     private Label errLabel;
 
     @FXML
-    public void checkoutAction(ActionEvent e) {
+    public void checkoutAction() {
         errLabel.setVisible(false);
         try {
             if (Double.parseDouble(payingTF.getText()) < ShoppingCart.sum()) throw new NumberFormatException();

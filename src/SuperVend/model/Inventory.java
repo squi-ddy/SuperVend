@@ -1,12 +1,10 @@
 package SuperVend.model;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Inventory {
-    private static final ArrayList<String> categories;
     private static final TreeMap<String, Integer> inventory;
 
     static {
@@ -16,29 +14,22 @@ public class Inventory {
             String[] line = in.nextLine().split(",");
             inventory.put(line[1], Integer.parseInt(line[2]));
         }
-        categories = ProductCategories.getCategories();
         in.close();
     }
 
-    public static boolean add(String productID, int quantity) {
-        if (!categories.contains(productID.substring(0, 2))) return false;
+    public static void add(String productID, int quantity) {
         inventory.put(productID, quantity);
         writeData();
-        return true;
     }
 
-    public static boolean delete(String productID) {
-        if (!inventory.containsKey(productID)) return false;
+    public static void delete(String productID) {
         inventory.remove(productID);
         writeData();
-        return true;
     }
 
-    public static boolean updateQuantity(String productID, int quantity) {
-        if (!inventory.containsKey(productID)) return false;
+    public static void updateQuantity(String productID, int quantity) {
         inventory.replace(productID, quantity);
         writeData();
-        return true;
     }
 
     public static int getQuantity(String productID) {

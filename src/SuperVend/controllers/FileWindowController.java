@@ -2,7 +2,6 @@ package SuperVend.controllers;
 
 import SuperVend.model.Move;
 import SuperVend.model.ResourceManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,8 +24,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class FileWindowController {
     @FXML
@@ -35,12 +34,13 @@ public class FileWindowController {
     private Label fileTypeLabel;
 
     private Path baseFilePath;
-    private Function<Path, Parent> onPreview;
+    private BiConsumer<Path, Stage> onPreview;
     private TreeSet<Path> filePaths;
     private Consumer<ArrayList<Path>> onSubmit;
     private ArrayList<String> validExtensions;
     private String prefix;
     private LinkedList<Move> moves;
+    private boolean increment;
 
     @FXML
     public void submitAction() {
@@ -57,19 +57,23 @@ public class FileWindowController {
         List<File> selected = fileChooser.showOpenMultipleDialog(fileListVBox.getScene().getWindow());
         if (selected == null) return;
         for (File f : selected) {
-                String name = (prefix == null ? f.getName() : (prefix + (filePaths.size() + 1) + f.getName().substring(f.getName().lastIndexOf('.'))));
-                Path newFP = baseFilePath.resolve(Path.of(name));
-                moves.add(new Move(f.toPath(), newFP, true));
-                filePaths.add(newFP);
+            String name = (prefix == null ? f.getName() : (prefix + (increment ? filePaths.size() + 1 : "") + f.getName().substring(f.getName().lastIndexOf('.'))));
+            Path newFP = baseFilePath.resolve(Path.of(name));
+            moves.add(new Move(f.toPath(), newFP, true));
+            filePaths.add(newFP);
         }
         constructTree();
     }
 
-    public void init(Path baseFilePath, ArrayList<String> fileNames, Function<Path, Parent> onPreview, ArrayList<String> validExtensions, Consumer<ArrayList<Path>> onSubmit, String fileType) {
+    public void init(Path baseFilePath, ArrayList<String> fileNames, BiConsumer<Path, Stage> onPreview, ArrayList<String> validExtensions, Consumer<ArrayList<Path>> onSubmit, String fileType) {
         init(baseFilePath, fileNames, onPreview, validExtensions, onSubmit, fileType, null);
     }
 
-    public void init(Path baseFilePath, ArrayList<String> fileNames, Function<Path, Parent> onPreview, ArrayList<String> validExtensions, Consumer<ArrayList<Path>> onSubmit, String fileType, String prefix) {
+    public void init(Path baseFilePath, ArrayList<String> fileNames, BiConsumer<Path, Stage> onPreview, ArrayList<String> validExtensions, Consumer<ArrayList<Path>> onSubmit, String fileType, String prefix) {
+        init(baseFilePath, fileNames, onPreview, validExtensions, onSubmit, fileType, prefix, true);
+    }
+
+    public void init(Path baseFilePath, ArrayList<String> fileNames, BiConsumer<Path, Stage> onPreview, ArrayList<String> validExtensions, Consumer<ArrayList<Path>> onSubmit, String fileType, String prefix, boolean increment) {
         // if prefix is given, we assume it is ordered in nature, with the files being called prefix1.xxx, prefix2.xxx, ...
         moves = new LinkedList<>();
         this.baseFilePath = baseFilePath;
@@ -82,6 +86,7 @@ public class FileWindowController {
         this.validExtensions = validExtensions;
         this.onSubmit = onSubmit;
         this.prefix = prefix;
+        this.increment = increment;
         fileTypeLabel.setText(fileType);
         if (prefix != null) moveFiles();
         constructTree();
@@ -105,14 +110,11 @@ public class FileWindowController {
             filePaths.remove(filePath);
             moves.add(new Move(filePath, null));
             moveFiles();
-            constructTree();
         });
         root.setOnMouseClicked(e -> {
             if (e.getClickCount() >= 2 && e.getButton() == MouseButton.PRIMARY) {
-                Parent parent = onPreview.apply(findRealFP(filePath));
-                Scene scene = new Scene(parent);
                 Stage stage = new Stage();
-                stage.setScene(scene);
+                onPreview.accept(findRealFP(filePath), stage);
                 stage.setTitle(filePath.getFileName().toString());
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setResizable(false);
@@ -124,7 +126,7 @@ public class FileWindowController {
     }
 
     private void moveFiles() {
-        if (prefix == null) return;
+        if (prefix == null || !increment) return;
         int i = 0;
         TreeSet<Path> paths = new TreeSet<>();
         for (Path path : filePaths) {
@@ -165,7 +167,7 @@ public class FileWindowController {
         Iterator<Move> it = moves.descendingIterator();
         while (it.hasNext()) {
             Move next = it.next();
-            if (next.getDestination() == dest) {
+            if (next.getDestination().equals(dest)) {
                 dest = next.getOrigin();
             }
         }

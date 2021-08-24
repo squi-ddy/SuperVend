@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -40,7 +39,12 @@ public class AboutController implements Initializable {
     }
 
     public void addListeners(Stage stage) {
-        stage.setOnCloseRequest(e -> {if (advBox.getMediaPlayer() != null) advBox.getMediaPlayer().stop();});
+        stage.setOnCloseRequest(e -> {
+            if (advBox.getMediaPlayer() != null) {
+                advBox.getMediaPlayer().stop();
+                advBox.getMediaPlayer().setMute(true);
+            }
+        });
     }
 
     private MediaPlayer createPlayer() {

@@ -22,7 +22,8 @@ public class Product implements Comparable<Product> {
     private String origin;
     private Date expiry;
     private double weight;
-    private ArrayList<String> images;
+    private final ArrayList<String> images;
+    private String category;
 
     public Product(String productID, String name, String description, String brand, double price, int storageTemp, short size, String origin, Date expiry, double weight, ArrayList<String> images) {
         this.productID = productID;
@@ -36,6 +37,7 @@ public class Product implements Comparable<Product> {
         this.expiry = expiry;
         this.weight = weight;
         this.images = images;
+        this.category = this.productID.substring(0, 2);
     }
 
     public double getPrice() {
@@ -98,10 +100,6 @@ public class Product implements Comparable<Product> {
         this.expiry = expiry;
     }
 
-    public void setImages(ArrayList<String> images) {
-        this.images = images;
-    }
-
     public void setOrigin(String origin) {
         this.origin = origin;
     }
@@ -112,6 +110,7 @@ public class Product implements Comparable<Product> {
 
     public void setProductID(String productID) {
         this.productID = productID;
+        this.category = productID.substring(0, 2);
     }
 
     public void setSize(short size) {
@@ -168,12 +167,15 @@ public class Product implements Comparable<Product> {
 
     @Override
     public int compareTo(Product o) {
-        if (ProductCategories.getFullName(this.getProductID().substring(0, 2)).compareTo(ProductCategories.getFullName(o.getProductID().substring(0, 2))) != 0) {
-            return ProductCategories.getFullName(this.getProductID().substring(0, 2)).compareTo(ProductCategories.getFullName(o.getProductID().substring(0, 2)));
+        if (ProductCategories.getCategory(this.category).getFullName().toUpperCase().compareTo(ProductCategories.getCategory(o.category).getFullName().toUpperCase()) != 0) {
+            return ProductCategories.getCategory(this.category).getFullName().toUpperCase().compareTo(ProductCategories.getCategory(o.category).getFullName().toUpperCase());
         }
         if (this.getSize() != o.getSize()) {
             return this.getSize() - o.getSize();
         }
-        return this.getName().compareTo(o.getName());
+        if (this.getName().toUpperCase().compareTo(o.getName().toUpperCase()) != 0) {
+            return this.getName().toUpperCase().compareTo(o.getName().toUpperCase());
+        }
+        return this.productID.compareTo(o.productID);
     }
 }

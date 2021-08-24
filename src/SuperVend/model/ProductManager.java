@@ -51,15 +51,23 @@ public class ProductManager {
 
     public static TreeSet<Product> getProducts() {return new TreeSet<>(productsByID.values());}
 
-    public static TreeMap<String, ArrayList<Product>> getProductsByCategory() {
-        TreeMap<String, ArrayList<Product>> productTree = new TreeMap<>();
-        for (String key: ProductCategories.getCategories()) {
-            productTree.put(key, new ArrayList<>());
+    public static TreeMap<Category, TreeSet<Product>> getAllProductsByCategory() {
+        TreeMap<Category, TreeSet<Product>> productTree = new TreeMap<>();
+        for (Category key: ProductCategories.getCategories()) {
+            productTree.put(key, new TreeSet<>());
         }
         for (String prodID : productsByID.keySet()) {
-            productTree.get(prodID.substring(0, 2)).add(productsByID.get(prodID));
+            productTree.get(ProductCategories.getCategory(prodID.substring(0, 2))).add(productsByID.get(prodID));
         }
         return productTree;
+    }
+
+    public static TreeSet<Product> getProductsByCategory(Category category) {
+        TreeSet<Product> result = new TreeSet<>();
+        for (String prodID : productsByID.keySet()) {
+            if (prodID.substring(0, 2).equals(category.getId())) result.add(productsByID.get(prodID));
+        }
+        return result;
     }
 
     public static void addProduct(Product p) {

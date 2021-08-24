@@ -1,45 +1,59 @@
 package SuperVend.model;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class ProductCategories {
-    private static final TreeMap<String, String> categories;
+    private static final TreeMap<String, Category> categories;
 
     static {
         categories = new TreeMap<>();
         Scanner in = new Scanner(ResourceManager.readFile("csv/ProductCode.csv"));
         while (in.hasNext()) {
             String[] line = in.nextLine().split(",");
-            categories.put(line[0], line[1]);
+            categories.put(line[0], new Category(line[0], line[1]));
         }
         in.close();
     }
 
-    public static ArrayList<String> getCategories() {
-        return new ArrayList<>(categories.keySet());
+    public static TreeSet<Category> getCategories() {
+        return new TreeSet<>(categories.values());
     }
 
-    public static String getFullName(String category) {
-        return categories.get(category);
+    public static Category getCategory(String id) {
+        return categories.get(id);
     }
 
-    public static void addCategory(String shortName, String fullName) {
-        categories.put(shortName, fullName);
+    public static void addCategory(Category category) {
+        categories.put(category.getId(), category);
         writeData();
     }
 
-    public static void deleteCategory(String name) {
-        categories.remove(name);
+    public static void deleteCategory(Category category) {
+        for (Product product : ProductManager.getProductsByCategory(category)) {
+            ProductManager.deleteProduct(product);
+        }
+        categories.remove(category.getId());
+        writeData();
+    }
+
+    public static void renameCategory(Category toRename, String newId, String newLongName) {
+        for (Product product : ProductManager.getProductsByCategory(toRename)) {
+            ProductManager.changeID(product, product.getProductID().replace(toRename.getId(), newId));
+        }
+        categories.remove(toRename.getId());
+        categories.put(newId, toRename);
+        toRename.setId(newId);
+        toRename.setFullName(newLongName);
         writeData();
     }
 
     public static void writeData() {
         PrintWriter out = new PrintWriter(ResourceManager.writeFile("csv/ProductCode.csv"));
         for (String keys : categories.keySet()) {
-            out.write(keys + ',' + categories.get(keys));
+            out.println(keys + ',' + categories.get(keys).getFullName());
         }
         out.close();
     }

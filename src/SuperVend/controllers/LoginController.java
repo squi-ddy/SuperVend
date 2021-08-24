@@ -2,7 +2,7 @@ package SuperVend.controllers;
 
 import SuperVend.Main;
 import SuperVend.model.ResourceManager;
-import javafx.event.ActionEvent;
+import SuperVend.model.Security;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,16 +13,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import SuperVend.model.Security;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -39,7 +33,7 @@ public class LoginController implements Initializable {
     private Stage window;
 
     @FXML
-    public void loginAction(ActionEvent e) {
+    public void loginAction() {
         String username = userTF.getText();
         String password = pwdTF.getText();
         userTF.clear();
@@ -59,15 +53,20 @@ public class LoginController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("SuperVend" + (Security.isAdmin() ? " (Admin)" : ""));
             stage.showAndWait();
+            reloadImage();
             window.show();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
+    private void reloadImage() {
+        logoImg.setImage(new Image(ResourceManager.readFile("imgs/logo.png")));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logoImg.setImage(new Image(ResourceManager.readFile("imgs/logo.png")));
+        reloadImage();
     }
 
     public void setWindow(Stage stage) {

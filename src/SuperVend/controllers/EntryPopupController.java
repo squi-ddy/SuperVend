@@ -1,11 +1,9 @@
 package SuperVend.controllers;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,25 +15,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.function.Function;
 
 public class EntryPopupController {
     // creates small popups with a few input areas (pure code)
     private final ArrayList<TextField> promptTFs;
     private final ArrayList<String> toEnter;
-    private final Function<ArrayList<String>, String> onSubmit;
+    private final Function<String[], String> onSubmit;
     private final VBox root;
     private final Stage stage;
     private final SimpleStringProperty errText;
+    private final String[] defaults;
 
-    public EntryPopupController(String[] toEnter, Function<ArrayList<String>, String> onSubmit, String title) {
-        this(new ArrayList<>(List.of(toEnter)), onSubmit, title);
+    public EntryPopupController(String[] toEnter, Function<String[], String> onSubmit, String title, String[] defaults) {
+        this(new ArrayList<>(List.of(toEnter)), onSubmit, title, defaults);
     }
 
-    public EntryPopupController(ArrayList<String> toEnter, Function<ArrayList<String>, String> onSubmit, String title) {
+    public EntryPopupController(ArrayList<String> toEnter, Function<String[], String> onSubmit, String title, String[] defaults) {
+        this.defaults = defaults;
         promptTFs = new ArrayList<>();
         this.toEnter = toEnter;
         this.onSubmit = onSubmit;
@@ -78,6 +76,7 @@ public class EntryPopupController {
         prompt.setTextAlignment(TextAlignment.CENTER);
         prompt.getChildren().add(new Label(field + ": "));
         TextField entry = new TextField();
+        if (defaults != null) entry.setText(defaults[idx]);
         promptTFs.add(entry);
         prompt.getChildren().add(entry);
         VBox.setMargin(prompt, new Insets(3));
@@ -85,8 +84,10 @@ public class EntryPopupController {
     }
 
     private void doSubmit(ActionEvent e) {
-        ArrayList<String> results = new ArrayList<>();
-        promptTFs.forEach(tf -> results.add(tf.getText()));
+        String[] results = new String[promptTFs.size()];
+        for (int i = 0; i < promptTFs.size(); i++) {
+            results[i] = promptTFs.get(i).getText();
+        }
         String result = onSubmit.apply(results);
         if (result == null) stage.hide();
         else errText.set(result);

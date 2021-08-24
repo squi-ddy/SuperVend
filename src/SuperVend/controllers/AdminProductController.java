@@ -1,10 +1,13 @@
 package SuperVend.controllers;
 
 import SuperVend.Main;
-import SuperVend.model.*;
-import javafx.event.ActionEvent;
+import SuperVend.model.Inventory;
+import SuperVend.model.Product;
+import SuperVend.model.ProductManager;
+import SuperVend.model.ResourceManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -13,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -57,7 +59,7 @@ public class AdminProductController {
     private Product product;
 
     @FXML
-    public void applyAction(ActionEvent e) {
+    public void applyAction() {
         product.setName(nameTF.getText());
         try {
             int stock = Integer.parseInt(stockTF.getText());
@@ -129,7 +131,7 @@ public class AdminProductController {
     }
 
     @FXML
-    public void chooseImageAction(ActionEvent e) {
+    public void chooseImageAction() {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource("view/filewindow.fxml")));
             Parent root = loader.load();
@@ -137,11 +139,11 @@ public class AdminProductController {
             ((FileWindowController) loader.getController()).init(
                     ResourceManager.getPath("products"),
                     product.getImages(),
-                    (Path p) -> {
+                    (p, s) -> {
                         ImageView iv = new ImageView(new Image(ResourceManager.readFile(p)));
                         iv.setFitHeight(500.);
                         iv.setFitWidth(500.);
-                        return new AnchorPane(iv);
+                        s.setScene(new Scene(new Group(iv)));
                     },
                     new ArrayList<>(Arrays.asList("*.png", "*.jpg", "*.jpeg")),
                     (ArrayList<Path> res) -> {
@@ -159,7 +161,6 @@ public class AdminProductController {
             stage.setResizable(false);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-            ProductManager.writeData();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

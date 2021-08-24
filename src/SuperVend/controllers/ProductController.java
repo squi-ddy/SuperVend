@@ -1,7 +1,6 @@
 package SuperVend.controllers;
 
 import SuperVend.model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
@@ -49,7 +48,7 @@ public class ProductController {
     private Product product;
 
     @FXML
-    public void cartAction(ActionEvent e) {
+    public void cartAction() {
         int toBuy;
         try {
             toBuy = Integer.parseInt(quantityTF.getText());
@@ -78,6 +77,7 @@ public class ProductController {
             ImageView iv = new ImageView(new Image(ResourceManager.readFile("products/" + p.getImages().get(page))));
             iv.setFitHeight(300);
             iv.setFitWidth(300);
+            iv.setPreserveRatio(true);
             return iv;
         });
         stockLabel.setText(Inventory.getQuantity(p.getProductID()) + " in stock");

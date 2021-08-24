@@ -9,50 +9,76 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="438.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.AdminOptionsController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.AdminOptionsController">
    <VBox alignment="TOP_CENTER" style="-fx-border-color: black;">
       <VBox.margin>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin>
-      <Label text="Products">
+      <Label text="Product Management and Categorisation">
          <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
          <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
          </font>
       </Label>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="258.0" prefWidth="581.0"
-                  style="-fx-border-color: black;" styleClass="edge-to-edge" vbarPolicy="NEVER">
-         <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0"/>
-         </VBox.margin>
-         <VBox fx:id="productsVBox"/>
-      </ScrollPane>
       <HBox alignment="CENTER">
-         <Button mnemonicParsing="false" onAction="#newProductAction" text="New Product...">
+         <VBox alignment="CENTER">
             <HBox.margin>
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </HBox.margin>
-         </Button>
-         <Button mnemonicParsing="false" onAction="#newCatAction" text="New Category...">
-            <opaqueInsets>
-               <Insets/>
-            </opaqueInsets>
-         </Button>
+            <Label text="Categories">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </VBox.margin>
+            </Label>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="258.0" prefWidth="581.0"
+                        style="-fx-border-color: black;" styleClass="edge-to-edge" vbarPolicy="NEVER">
+               <VBox fx:id="catVBox"/>
+            </ScrollPane>
+            <HBox alignment="CENTER">
+               <Button mnemonicParsing="false" onAction="#newCatAction" text="New Category...">
+                  <opaqueInsets>
+                     <Insets/>
+                  </opaqueInsets>
+                  <HBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                  </HBox.margin>
+               </Button>
+            </HBox>
+         </VBox>
+         <VBox alignment="CENTER">
+            <HBox.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </HBox.margin>
+            <Label text="Products">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+               </VBox.margin>
+            </Label>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="258.0" prefWidth="581.0"
+                        style="-fx-border-color: black;" styleClass="edge-to-edge" vbarPolicy="NEVER">
+               <VBox fx:id="productsVBox"/>
+            </ScrollPane>
+            <HBox alignment="CENTER">
+               <Button mnemonicParsing="false" onAction="#newProductAction" text="New Product...">
+                  <HBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                  </HBox.margin>
+               </Button>
+            </HBox>
+         </VBox>
       </HBox>
    </VBox>
    <TextFlow textAlignment="CENTER">
       <VBox.margin>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin>
-      <Label text="Logo "/>
-      <Button mnemonicParsing="false" onAction="#chooseLogo" text="Choose Image..."/>
+      <Label text="Logo " />
+      <Button mnemonicParsing="false" onAction="#chooseLogo" text="Choose Image..." />
    </TextFlow>
    <TextFlow textAlignment="CENTER">
-      <Label text="Advertisement "/>
-      <Button mnemonicParsing="false" onAction="#chooseAds" text="Choose Videos..."/>
+      <Label text="Advertisement " />
+      <Button mnemonicParsing="false" onAction="#chooseAds" text="Choose Videos..." />
    </TextFlow>
 </VBox>
