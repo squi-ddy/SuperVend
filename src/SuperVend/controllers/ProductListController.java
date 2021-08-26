@@ -36,7 +36,7 @@ public class ProductListController {
         rootNode.getPanes().clear();
         for (Category category : products.keySet()) {
             TitledPane cat = new TitledPane();
-            cat.setText(category.getFullName());
+            cat.setText(category.getFullName() + " (" + products.get(category).size() + ")");
             cat.setContent(createProducts(products.get(category)));
             rootNode.getPanes().add(cat);
         }

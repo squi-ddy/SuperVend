@@ -59,7 +59,13 @@ public class ProductController {
             return;
         }
         if (ShoppingCart.getProductCount(product) + toBuy <= Inventory.getQuantity(product.getProductID())) {
-            ShoppingCart.add(product, toBuy);
+            try {
+                ShoppingCart.add(product, toBuy);
+            } catch (IllegalArgumentException e) {
+                errLabel.setText("Not enough space in cart!");
+                errLabel.setStyle("-fx-text-fill: red; ");
+                return;
+            }
             errLabel.setText("Added " + toBuy + " " + product.getName() + " to the cart!");
             errLabel.setStyle("-fx-text-fill: royalblue; ");
         } else {

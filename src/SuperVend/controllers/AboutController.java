@@ -1,5 +1,6 @@
 package SuperVend.controllers;
 
+import SuperVend.Main;
 import SuperVend.model.Advertisement;
 import SuperVend.model.ResourceManager;
 import SuperVend.model.Security;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -23,6 +25,8 @@ public class AboutController implements Initializable {
     private ImageView logoImg;
     @FXML
     private Label adminInfoLabel;
+    @FXML
+    private Text verNoLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -35,6 +39,7 @@ public class AboutController implements Initializable {
             advBox.setVisible(false);
             advBox.setManaged(false);
         }
+        verNoLabel.setText(String.valueOf(Main.verNo));
         logoImg.setImage(new Image(ResourceManager.readFile("imgs/logo.png")));
     }
 

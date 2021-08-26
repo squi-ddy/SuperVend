@@ -12,47 +12,71 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox alignment="TOP_CENTER" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.CartController">
+<VBox alignment="TOP_CENTER" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuperVend.controllers.CartController">
    <Label text="Shopping Cart">
       <VBox.margin>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin>
       <font>
-         <Font size="24.0"/>
+         <Font size="24.0" />
       </font>
    </Label>
    <AnchorPane prefHeight="500.0">
       <VBox.margin>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-border-color: black;" styleClass="edge-to-edge"
-                  vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <VBox fx:id="cartItemsVBox" alignment="TOP_CENTER"/>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-border-color: black;" styleClass="edge-to-edge" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <VBox fx:id="cartItemsVBox" alignment="TOP_CENTER" />
       </ScrollPane>
    </AnchorPane>
    <HBox alignment="CENTER">
-      <VBox.margin>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-      </VBox.margin>
-      <TextFlow>
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total: $"/>
-         <Text fx:id="sumText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
+      <TextFlow textAlignment="CENTER">
+         <HBox.margin>
+            <Insets/>
+         </HBox.margin>
+         <Text fx:id="noCartItems" strokeType="OUTSIDE" strokeWidth="0.0" text="x">
+            <font>
+               <Font size="10.0"/>
+            </font>
+         </Text>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+            <font>
+               <Font size="10.0"/>
+            </font>
+         </Text>
+         <Text fx:id="maxCartItems" strokeType="OUTSIDE" strokeWidth="0.0" text="x">
+            <font>
+               <Font size="10.0"/>
+            </font>
+         </Text>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" items">
+            <font>
+               <Font size="10.0"/>
+            </font>
+         </Text>
       </TextFlow>
    </HBox>
    <HBox alignment="CENTER">
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paying: $"/>
-      <TextField fx:id="payingTF" prefHeight="26.0" prefWidth="68.0"/>
+      <VBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </VBox.margin>
+      <TextFlow>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total: $" />
+         <Text fx:id="sumText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      </TextFlow>
+   </HBox>
+   <HBox alignment="CENTER">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paying: $" />
+      <TextField fx:id="payingTF" prefHeight="26.0" prefWidth="68.0" />
    </HBox>
    <Button mnemonicParsing="false" onAction="#checkoutAction" text="Checkout">
       <VBox.margin>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin>
    </Button>
    <Label fx:id="errLabel" text="Label" textFill="RED">
       <VBox.margin>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin>
    </Label>
 </VBox>

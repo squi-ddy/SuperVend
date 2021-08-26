@@ -29,6 +29,10 @@ public class CartController implements Initializable {
     private TextField payingTF;
     @FXML
     private Label errLabel;
+    @FXML
+    private Text noCartItems;
+    @FXML
+    private Text maxCartItems;
 
     @FXML
     public void checkoutAction() {
@@ -37,6 +41,11 @@ public class CartController implements Initializable {
             if (Double.parseDouble(payingTF.getText()) < ShoppingCart.sum()) throw new NumberFormatException();
         } catch (NumberFormatException ex) {
             errLabel.setText("Enter a valid payment amount!");
+            errLabel.setVisible(true);
+            return;
+        }
+        if (ShoppingCart.noProducts() == 0) {
+            errLabel.setText("Nothing in cart!");
             errLabel.setVisible(true);
             return;
         }
@@ -63,7 +72,7 @@ public class CartController implements Initializable {
         cartItemsVBox.getChildren().clear();
         payingTF.clear();
         for (Product p : ShoppingCart.getProducts()) {
-            CartTileController ct = new CartTileController(p, cartItemsVBox, () -> sumText.setText(String.format("%.2f", ShoppingCart.sum())));
+            CartTileController ct = new CartTileController(p, cartItemsVBox, this::init);
             cartItemsVBox.getChildren().add(ct.constructTile());
         }
         if (cartItemsVBox.getChildren().size() == 0) {
@@ -71,11 +80,13 @@ public class CartController implements Initializable {
             VBox.setMargin(lab, new Insets(5));
             cartItemsVBox.getChildren().add(lab);
         }
+        noCartItems.setText(String.valueOf(ShoppingCart.noProducts()));
         sumText.setText(String.format("%.2f", ShoppingCart.sum()));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        maxCartItems.setText(String.valueOf(Main.cartLimit));
         init();
     }
 }

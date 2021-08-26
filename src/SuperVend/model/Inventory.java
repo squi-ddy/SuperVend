@@ -28,7 +28,7 @@ public class Inventory {
     }
 
     public static void updateQuantity(String productID, int quantity) {
-        inventory.replace(productID, quantity);
+        inventory.put(productID, quantity);
         writeData();
     }
 

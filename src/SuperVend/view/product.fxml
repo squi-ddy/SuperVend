@@ -67,41 +67,65 @@
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
+               <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <TextFlow prefWidth="100.0" textAlignment="CENTER">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Size: " />
                <Text fx:id="sizeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               <GridPane.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </GridPane.margin>
             </TextFlow>
             <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Origin: " />
                <Text fx:id="countryText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               <GridPane.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </GridPane.margin>
             </TextFlow>
             <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="1">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Weight: " />
                <Text fx:id="weightText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="g" />
+               <GridPane.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </GridPane.margin>
             </TextFlow>
             <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="3">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temperature: " />
                <Text fx:id="tempText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="°C" />
+               <GridPane.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </GridPane.margin>
             </TextFlow>
             <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="2">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expires: " />
                <Text fx:id="expiryText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               <GridPane.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </GridPane.margin>
             </TextFlow>
             <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Internal ID: " />
                <Text fx:id="prodIDText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               <GridPane.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </GridPane.margin>
             </TextFlow>
             <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand: " />
                <Text fx:id="brandText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               <GridPane.margin>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </GridPane.margin>
             </TextFlow>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
          </GridPane>
       </HBox>
       <Label fx:id="infoLabel" text="See More..." textFill="#0a6bfa" underline="true">

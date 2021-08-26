@@ -10,6 +10,10 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class Main extends Application {
+    // global settings
+    public static final double verNo = 1.1;
+    public static final int cartLimit = 10;
+
     public static void main(String[] args) {
         launch(args);
     }

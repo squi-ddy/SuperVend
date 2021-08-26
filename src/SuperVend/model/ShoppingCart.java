@@ -1,5 +1,7 @@
 package SuperVend.model;
 
+import SuperVend.Main;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +16,9 @@ public class ShoppingCart {
     }
 
     public static void add(Product p, int quantity) {
+        if (noProducts() + quantity - productCount.getOrDefault(p, 0) > Main.cartLimit) {
+            throw new IllegalArgumentException("Not enough space!");
+        }
         productCount.put(p, productCount.getOrDefault(p, 0) + quantity);
     }
 
@@ -31,6 +36,10 @@ public class ShoppingCart {
 
     public static int getProductCount(Product e) {
         return productCount.getOrDefault(e, 0);
+    }
+
+    public static int noProducts() {
+        return productCount.values().stream().mapToInt(x -> x).sum();
     }
 
     public static double sum() {

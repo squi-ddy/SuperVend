@@ -106,7 +106,6 @@ public class FileWindowController {
         removeButton.setGraphic(x);
         HBox.setMargin(removeButton, new Insets(3));
         removeButton.setOnAction(e -> {
-            fileListVBox.getChildren().remove(root);
             filePaths.remove(filePath);
             moves.add(new Move(filePath, null));
             moveFiles();
@@ -135,7 +134,9 @@ public class FileWindowController {
                 moves.add(new Move(path, newPath));
                 paths.add(newPath);
         }
-        filePaths = paths;
+        filePaths.clear();
+        filePaths.addAll(paths);
+        constructTree();
     }
 
     private void constructTree() {
@@ -167,7 +168,7 @@ public class FileWindowController {
         Iterator<Move> it = moves.descendingIterator();
         while (it.hasNext()) {
             Move next = it.next();
-            if (next.getDestination().equals(dest)) {
+            if (Objects.equals(next.getDestination(), dest)) {
                 dest = next.getOrigin();
             }
         }

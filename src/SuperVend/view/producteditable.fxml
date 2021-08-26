@@ -26,7 +26,7 @@
    <HBox alignment="CENTER" style="-fx-border-color: black;">
       <Button mnemonicParsing="false" onAction="#chooseImageAction" text="Choose Images...">
          <HBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </HBox.margin>
       </Button>
    </HBox>
@@ -45,17 +45,17 @@
             </rowConstraints>
             <VBox alignment="CENTER" GridPane.columnIndex="1">
                <TextFlow textAlignment="CENTER">
-                  <TextField fx:id="stockTF" prefHeight="26.0" prefWidth="32.0"/>
-                  <Label text=" in stock"/>
+                  <TextField fx:id="stockTF" prefHeight="26.0" prefWidth="32.0" />
+                  <Label text=" in stock" />
                </TextFlow>
             </VBox>
             <VBox alignment="CENTER">
                <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
                <TextFlow textAlignment="CENTER">
-                  <Label text="\$"/>
-                  <TextField fx:id="priceTF" prefHeight="26.0" prefWidth="53.0"/>
+                  <Label text="\$" />
+                  <TextField fx:id="priceTF" prefHeight="26.0" prefWidth="53.0" />
                </TextFlow>
             </VBox>
          </GridPane>
@@ -65,57 +65,78 @@
       <VBox.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin>
-      <TextArea fx:id="descTextArea" prefHeight="200.0" styleClass="centredTextArea" wrapText="true">
+      <TextArea fx:id="descTextArea" prefHeight="200.0" prefWidth="688.0" styleClass="centredTextArea" wrapText="true">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </TextArea>
       <VBox alignment="CENTER" fillWidth="false">
          <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
          <HBox alignment="CENTER" style="-fx-border-color: black;">
             <GridPane prefWidth="400.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <TextFlow prefWidth="100.0" textAlignment="CENTER">
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Size: "/>
-                  <TextField fx:id="sizeTF" prefHeight="26.0" prefWidth="44.0"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Size: " />
+                  <TextField fx:id="sizeTF" prefHeight="26.0" prefWidth="44.0" />
+                  <GridPane.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </GridPane.margin>
                </TextFlow>
                <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1">
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Origin: "/>
-                  <TextField fx:id="originTF" prefHeight="26.0" prefWidth="149.0"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Origin: " />
+                  <TextField fx:id="originTF" prefHeight="26.0" prefWidth="149.0" />
+                  <GridPane.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </GridPane.margin>
                </TextFlow>
                <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="1">
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Weight: "/>
-                  <TextField fx:id="weightTF" prefHeight="26.0" prefWidth="57.0"/>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="g"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Weight: " />
+                  <TextField fx:id="weightTF" prefHeight="26.0" prefWidth="57.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="g" />
+                  <GridPane.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </GridPane.margin>
                </TextFlow>
                <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="3">
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temperature: "/>
-                  <TextField fx:id="tempTF" prefHeight="26.0" prefWidth="33.0"/>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="°C"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Temperature: " />
+                  <TextField fx:id="tempTF" prefHeight="26.0" prefWidth="33.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="°C" />
+                  <GridPane.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </GridPane.margin>
                </TextFlow>
                <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.rowIndex="2">
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expires: "/>
-                  <TextField fx:id="expiryTF" prefHeight="26.0" prefWidth="90.0"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expires: " />
+                  <TextField fx:id="expiryTF" prefHeight="26.0" prefWidth="90.0" />
+                  <GridPane.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </GridPane.margin>
                </TextFlow>
                <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Internal ID: "/>
-                  <Text fx:id="prodCatText" strokeType="OUTSIDE" strokeWidth="0.0" text="AB"/>
-                  <TextField fx:id="prodIDTF" prefHeight="26.0" prefWidth="60.0"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Internal ID: " />
+                  <Text fx:id="prodCatText" strokeType="OUTSIDE" strokeWidth="0.0" text="AB" />
+                  <TextField fx:id="prodIDTF" prefHeight="26.0" prefWidth="60.0" />
+                  <GridPane.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </GridPane.margin>
                </TextFlow>
                <TextFlow prefWidth="100.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand: "/>
-                  <TextField fx:id="brandTF" prefHeight="26.0" prefWidth="150.0"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand: " />
+                  <TextField fx:id="brandTF" prefHeight="26.0" prefWidth="150.0" />
+                  <GridPane.margin>
+                     <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  </GridPane.margin>
                </TextFlow>
             </GridPane>
          </HBox>

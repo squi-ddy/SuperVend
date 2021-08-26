@@ -15,7 +15,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -125,9 +124,9 @@ public class AdminProductController {
         ProductManager.changeID(product, productID);
         product.setBrand(brandTF.getText());
         ProductManager.writeData();
-        Inventory.writeData();
         errLabel.setStyle("-fx-text-fill: royalblue;");
         errLabel.setText("Update successful!");
+        ProductListController.updateProducts(ProductManager.getAllProductsByCategory());
     }
 
     @FXML

@@ -28,7 +28,7 @@
                 <Font size="18.0" />
             </font>
         </Text>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1.0">
+        <Text fx:id="verNoLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="1.0">
             <font>
                 <Font size="15.0" />
             </font>
