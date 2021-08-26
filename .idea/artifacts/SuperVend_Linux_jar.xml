@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="SuperVend_Linux:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/linux_jar</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/jars</output-path>
     <root id="archive" name="SuperVend_linux.jar">
       <element id="module-output" name="SuperVend" />
       <element id="extracted-dir" path="$USER_HOME$/Documents/javafx-sdk/javafx-sdk-16-linux/lib/javafx-swt.jar" path-in-jar="/" />
