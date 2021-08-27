@@ -4,6 +4,7 @@ import SuperVend.Main;
 import SuperVend.model.ProductManager;
 import SuperVend.model.ResourceManager;
 import SuperVend.model.Security;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,6 +73,11 @@ public class MainController implements Initializable {
                 AnchorPane.setTopAnchor(root, 0.);
                 contentPane.getChildren().clear();
                 contentPane.getChildren().add(root);
+
+                TranslateTransition tt = new TranslateTransition(Duration.millis(500), contentPane);
+                tt.setFromX(-contentPane.getWidth());
+                tt.setToX(0);
+                tt.play();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

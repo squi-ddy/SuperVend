@@ -3,11 +3,13 @@ package SuperVend.controllers;
 import SuperVend.model.Category;
 import SuperVend.model.Product;
 import SuperVend.model.Security;
+import javafx.animation.TranslateTransition;
 import javafx.scene.Cursor;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -57,6 +59,10 @@ public class ProductListController {
             prod.setOnMouseClicked(e -> selectionController.handlePress(prodLabel, () -> {
                 contentPane.getChildren().clear();
                 contentPane.getChildren().add(Security.isAdmin() ? AdminProductLoadController.getRoot(product) : ProductLoadController.getRoot(product));
+                TranslateTransition tt = new TranslateTransition(Duration.millis(500), contentPane);
+                tt.setFromX(-contentPane.getWidth());
+                tt.setToX(0);
+                tt.play();
             }));
             res.getChildren().add(prod);
         }

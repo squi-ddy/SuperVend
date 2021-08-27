@@ -1,6 +1,7 @@
 package SuperVend.controllers;
 
 import SuperVend.model.*;
+import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class ProductController {
     @FXML
@@ -105,10 +107,20 @@ public class ProductController {
                 moreInfoHBox.setManaged(true);
                 moreInfoHBox.setVisible(true);
                 infoLabel.setText("See Less...");
+                ScaleTransition st = new ScaleTransition(Duration.millis(300), moreInfoHBox);
+                st.setFromY(0);
+                st.setToY(1);
+                st.play();
             } else {
-                moreInfoHBox.setManaged(false);
-                moreInfoHBox.setVisible(false);
                 infoLabel.setText("See More...");
+                ScaleTransition st = new ScaleTransition(Duration.millis(300), moreInfoHBox);
+                st.setFromY(1);
+                st.setToY(0);
+                st.play();
+                st.setOnFinished(ae -> {
+                    moreInfoHBox.setManaged(false);
+                    moreInfoHBox.setVisible(false);
+                });
             }
             showingMore = !showingMore;
         });
